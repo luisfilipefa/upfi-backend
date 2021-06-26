@@ -8,8 +8,8 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Exclude, Expose } from "class-transformer";
 
-import { Exclude } from "class-transformer";
 import { Post } from "./post.model";
 import { hashSync } from "bcryptjs";
 import { v4 as uuid } from "uuid";
@@ -28,6 +28,11 @@ export class User {
 
   @Column()
   username: string;
+
+  @Expose({ name: "custom_username" })
+  customUsername() {
+    return `@${this.username}`;
+  }
 
   @Column()
   avatar: string;
