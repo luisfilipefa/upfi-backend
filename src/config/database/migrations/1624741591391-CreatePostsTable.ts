@@ -24,9 +24,10 @@ export class CreatePostsTable1624741591391 implements MigrationInterface {
             type: "uuid",
           },
           {
-            name: "rocketUpCount",
-            type: "integer",
-            default: 0,
+            name: "likes",
+            type: "varchar",
+            isArray: true,
+            default: "array[]::varchar[]",
           },
           {
             name: "created_at",

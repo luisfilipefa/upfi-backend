@@ -33,8 +33,8 @@ export class Post {
   @ManyToOne(() => User)
   author: User;
 
-  @Column()
-  rocketUpCount: number;
+  @Column("varchar", { array: true })
+  likes: string[];
 
   @CreateDateColumn()
   created_at: string;
