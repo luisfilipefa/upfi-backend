@@ -4,11 +4,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
 
 import { Exclude } from "class-transformer";
+import { Post } from "./post.model";
 import { hashSync } from "bcryptjs";
 import { v4 as uuid } from "uuid";
 
@@ -23,6 +25,9 @@ export class User {
 
   @Column()
   name: string;
+
+  @Column()
+  username: string;
 
   @Column()
   avatar: string;

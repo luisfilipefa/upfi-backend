@@ -3,22 +3,29 @@ import { UserRepository } from "@repositories/user.repository";
 import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
 
-interface ICreateUserParams {
+interface IStoreUserParams {
   name: string;
+  username: string;
   avatar: string;
   email: string;
   password: string;
 }
 
-export class CreateUserService {
-  async execute({ name, avatar, email, password }: ICreateUserParams) {
+export class StoreUserService {
+  async execute({ name, username, avatar, email, password }: IStoreUserParams) {
     const userRepository = getCustomRepository(UserRepository);
 
     const userExists = await userRepository.findOne({ email });
 
     if (userExists) throw new HttpError(409, "User already exists");
 
-    const user = await userRepository.create({ name, avatar, email, password });
+    const user = await userRepository.create({
+      name,
+      username,
+      avatar,
+      email,
+      password,
+    });
 
     await userRepository.save(user);
 
