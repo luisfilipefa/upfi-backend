@@ -1,16 +1,17 @@
 import { NextFunction, Request, Response } from "express";
 
-import { CreateUserService } from "@services/user/store.user.service";
+import { StoreUserService } from "@services/user/store.user.service";
 
 export class StoreUserController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      const createUserService = new CreateUserService();
+      const storeUserService = new StoreUserService();
 
-      const { name, avatar, email, password } = req.body;
+      const { name, username, avatar, email, password } = req.body;
 
-      const user = await createUserService.execute({
+      const user = await storeUserService.execute({
         name,
+        username,
         avatar,
         email,
         password,
