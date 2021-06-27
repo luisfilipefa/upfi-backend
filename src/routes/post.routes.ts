@@ -1,4 +1,5 @@
 import { AuthenticationMiddleware } from "src/middlewares/authentication.middleware";
+import { DestroyPostController } from "@controllers/post/destroy.post.controller";
 import { EditPostController } from "@controllers/post/edit.post.controller";
 import { IndexPostController } from "@controllers/post/index.post.controller";
 import { Route } from "@interfaces/route.interface";
@@ -12,6 +13,7 @@ export class PostRoutes implements Route {
   public storePostController = new StorePostController();
   public indexPostController = new IndexPostController();
   public editPostController = new EditPostController();
+  public destroyPostController = new DestroyPostController();
 
   constructor() {
     this.router.post(
@@ -24,6 +26,11 @@ export class PostRoutes implements Route {
       `${this.path}/:id`,
       this.authenticationMiddleware.check,
       this.editPostController.handle
+    );
+    this.router.delete(
+      `${this.path}/:id`,
+      this.authenticationMiddleware.check,
+      this.destroyPostController.handle
     );
   }
 }
