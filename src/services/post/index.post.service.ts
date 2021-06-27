@@ -1,4 +1,5 @@
 import { PostRepository } from "@repositories/post.repository";
+import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
 
 export class IndexPostService {
@@ -9,6 +10,6 @@ export class IndexPostService {
 
     const orderedPosts = posts.sort((a, b) => a.likes.length - b.likes.length);
 
-    return orderedPosts;
+    return classToPlain(orderedPosts);
   }
 }
