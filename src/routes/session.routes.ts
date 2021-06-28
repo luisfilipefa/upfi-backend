@@ -14,7 +14,7 @@ export class SessionRoutes implements Route {
   constructor() {
     this.router.post(`${this.path}`, this.storeSessionController.handle);
     this.router.get(
-      `${this.path}/:id`,
+      `${this.path}`,
       this.authenticationMiddleware.check,
       this.showSessionController.handle
     );
