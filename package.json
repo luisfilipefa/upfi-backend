@@ -9,6 +9,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "build": "yarn tsc",
+    "postinstall": "yarn typeorm migration:run",
     "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/server.js"
   },
   "dependencies": {
