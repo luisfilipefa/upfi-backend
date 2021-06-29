@@ -15,7 +15,7 @@ export class StoreUserService {
   async execute({ name, username, avatar, email, password }: IStoreUserParams) {
     const userRepository = getCustomRepository(UserRepository);
 
-    const userExists = await userRepository.findOne({ email });
+    const userExists = await userRepository.findOne({ email, username });
 
     if (userExists) throw new HttpError(409, "User already exists");
 

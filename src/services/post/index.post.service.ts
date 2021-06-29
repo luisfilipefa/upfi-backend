@@ -8,7 +8,7 @@ export class IndexPostService {
 
     const posts = await postRepository.find({ relations: ["author"] });
 
-    const orderedPosts = posts.sort((a, b) => a.likes.length - b.likes.length);
+    const orderedPosts = posts.sort((a, b) => b.likes.length - a.likes.length);
 
     return classToPlain(orderedPosts);
   }

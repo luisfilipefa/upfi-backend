@@ -7,11 +7,19 @@ export class StorePostController {
     try {
       const storePostService = new StorePostService();
 
-      const { title, image } = req.body;
+      const { title } = req.body;
+
+      const { path } = req.file;
+
+      console.log(req.file);
 
       const { id: author_id } = req.user;
 
-      const post = await storePostService.execute({ title, image, author_id });
+      const post = await storePostService.execute({
+        title,
+        image: path,
+        author_id,
+      });
 
       return res.json(post);
     } catch (error) {
