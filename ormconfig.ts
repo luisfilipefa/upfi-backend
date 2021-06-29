@@ -5,6 +5,7 @@ export default {
   "username": process.env.DB_USER || "docker",
   "password": process.env.DB_PASSWORD || "docker",
   "database": process.env.DB_NAME || "docker",
+  "extra": { "ssl": true },
   "migrations": ["./src/config/database/migrations/*.ts"],
   "entities": ["./src/models/*.ts"],
   "cli": {
